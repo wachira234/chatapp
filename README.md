@@ -10,12 +10,18 @@ Features
 Join Rooms: Users can enter a username and room name to join a specific chat room.
 
 Real-Time Messaging: Send and receive messages instantly within the same room.
+
 Join Notifications: Users are notified when someone joins the room.
+
 Responsive UI: Simple and clean chat interface styled with Tailwind CSS (assumed, based on class names).
+
 Room Normalization: Room names are case-insensitive (e.g., "Room1" and "room1" are treated as the same room).
 
+
 Project Structure
+
 chat-socket-next15/
+
 ├-─ app/
 │ ├── page.tsx # Main chat page (client-side logic)
 │ ├── layout.tsx # Next.js layout file
@@ -35,21 +41,31 @@ chat-socket-next15/
 ├── .gitignore # Git ignore file
 └── README.md # Project documentation (this file)
 
+
 Prerequisites
+
 To run this project, ensure you have the following installed:
 
 Node.js: Version 18.x or higher (recommended: 20.x).
+
 npm: Comes with Node.js (or use Yarn if preferred).
+
 Git: For cloning the repository (optional).
+
+
 Setup Instructions
+
 Clone the Repository (if applicable):
+
 git clone <repository-url>
+
 cd chat-socket-next15
 
 Install Dependencies: Run the following command to install all required npm packages:
 npm install
 
 Ensure the following key dependencies are in your package.json:
+
 "dependencies": {
 "next": "15.2.2",
 "react": "^19.0.0",
@@ -58,6 +74,7 @@ Ensure the following key dependencies are in your package.json:
 "socket.io-client": "^4.8.1",
 "ts-node": "^10.9.2"
 },
+
 "devDependencies": {
 "@eslint/eslintrc": "^3",
 "@tailwindcss/postcss": "^4",
@@ -71,24 +88,33 @@ Ensure the following key dependencies are in your package.json:
 "typescript": "^5"
 }
 
+
 Verify Ports:
+
 The server (server.mts) runs on port 3000.
+
 The Next.js app runs on port 3001 to avoid conflicts (configured in package.json scripts).
+
+
 Running the Application
+
 The project requires two processes to run simultaneously: the Socket.io server and the Next.js app.
 
 Step 1: Start the Socket.io Server
+
 Run the following command to start the Socket.io server:
 npm run dev:socket
 
 This will start the server on http://localhost:3000.
 You should see: Server running on http://localhost:3000.
+
 Step 2: Start the Next.js App
 In a separate terminal, run the following command to start the Next.js development server:
 npm run dev
 
 This will start the Next.js app on http://localhost:3000 (configured in package.json as "dev": "next dev -p 3000").
 You should see: ready - started server on 0.0.0.0:3000, url: http://localhost:3000.
+
 Step 3: Test the Chat
 Open a browser and go to http://localhost:3000.
 Open two browser tabs (or windows) to simulate multiple users:
@@ -100,12 +126,17 @@ Tab 2 shows "User1 joined the room".
 In Tab 2, send a message (e.g., "Hello from User2").
 Tab 1 should show "Hello from User2".
 Tab 2 should already show "Hello from User2" (from local state).
+
+
 Troubleshooting
+
 Common Issues
 Port Conflict:
+
 If you see an error like Error: listen EADDRINUSE: address already in use :::3000, ensure no other process is using port 3000 before starting the server.
 If needed, change the port in server.mts and update SOCKET_SERVER_URL in socketClient.ts to match.
 Messages Not Appearing:
+
 Check the server logs for Broadcasting message to room <room> to confirm the message is being broadcasted.
 Check the browser console in Tab 1 for Received message event: { sender: "User2", message: "Hello from User2" }.
 If the message is received but not rendered, verify the ChatMessage component and the messages state update in page.tsx.
