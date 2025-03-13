@@ -1,11 +1,14 @@
 # chatapp
 
 Real-Time Chat Application with Next.js and Socket.io
+
 Overview
 This project is a real-time chat application built using Next.js 15, Socket.io, and TypeScript. It allows users to join chat rooms, send messages, and receive messages in real-time from other users in the same room. The application uses Socket.io for real-time bidirectional communication between the client and server, with Next.js providing the frontend framework and TypeScript ensuring type safety.
 
 Features
+
 Join Rooms: Users can enter a username and room name to join a specific chat room.
+
 Real-Time Messaging: Send and receive messages instantly within the same room.
 Join Notifications: Users are notified when someone joins the room.
 Responsive UI: Simple and clean chat interface styled with Tailwind CSS (assumed, based on class names).
