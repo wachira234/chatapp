@@ -103,46 +103,72 @@ The project requires two processes to run simultaneously: the Socket.io server a
 Step 1: Start the Socket.io Server
 
 Run the following command to start the Socket.io server:
+
 npm run dev:socket
 
 This will start the server on http://localhost:3000.
+
 You should see: Server running on http://localhost:3000.
 
 Step 2: Start the Next.js App
+
 In a separate terminal, run the following command to start the Next.js development server:
+
 npm run dev
 
 This will start the Next.js app on http://localhost:3000 (configured in package.json as "dev": "next dev -p 3000").
+
 You should see: ready - started server on 0.0.0.0:3000, url: http://localhost:3000.
 
 Step 3: Test the Chat
+
 Open a browser and go to http://localhost:3000.
+
 Open two browser tabs (or windows) to simulate multiple users:
+
 Tab 1: Enter a username (e.g., "User1") and room name (e.g., "room1"), then click "Join Room".
+
 Tab 2: Enter a different username (e.g., "User2") and the same room name ("room1"), then click "Join Room".
+
+
 Verify that:
 Tab 1 shows "User2 joined the room".
+
 Tab 2 shows "User1 joined the room".
+
 In Tab 2, send a message (e.g., "Hello from User2").
+
 Tab 1 should show "Hello from User2".
+
 Tab 2 should already show "Hello from User2" (from local state).
 
 
 Troubleshooting
 
 Common Issues
+
 Port Conflict:
 
 If you see an error like Error: listen EADDRINUSE: address already in use :::3000, ensure no other process is using port 3000 before starting the server.
+
 If needed, change the port in server.mts and update SOCKET_SERVER_URL in socketClient.ts to match.
+
 Messages Not Appearing:
 
 Check the server logs for Broadcasting message to room <room> to confirm the message is being broadcasted.
+
 Check the browser console in Tab 1 for Received message event: { sender: "User2", message: "Hello from User2" }.
+
 If the message is received but not rendered, verify the ChatMessage component and the messages state update in page.tsx.
+
 "Socket.io connection error":
+
 Ensure the server is running on http://localhost:3000.
+
 Verify the CORS configuration in server.mts matches the Next.js app’s port (http://localhost:3000).
+
 Debugging Logs
+
 Server Logs: Check the terminal running npm run dev:socket for logs like User <username> joined room <room> and Message from <sender> in room <room>: <message>.
+
 Client Logs: Open the browser’s developer tools (F12) and check the Console tab for logs like Socket.io client connected to server, Joining room with data, and Received message event.
